@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,9 +38,11 @@ public class AppTest {
 
     @Before
     public void intiate() {
-        webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        System.setProperty("webdriver.chrome.driver", "D:\\Aplikasi\\chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("start-maximized");
+        options.addArguments("--remote-allow-origins=*");
+        webDriver = new ChromeDriver(options);
     }
 
     public AppTest(String pokemonName) {
